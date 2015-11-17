@@ -15,7 +15,7 @@ exports.init = function () {
         var filter = keys.filter(function(key) {
             return (key in thisArr);
         });
-        return filter.length == Object.keys(arr).length;
+        return filter.length == Object.keys(thisArr).length;
     }
 
     Object.prototype.checkContainsValues = function (values) {
