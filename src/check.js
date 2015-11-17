@@ -11,9 +11,9 @@ exports.init = function () {
     }
 
     Object.prototype.checkHasKeys = function (keys) {
-        var arr = this;
+        var thisArr = this;
         var filter = keys.filter(function(key) {
-            return (key in arr);
+            return (key in thisArr);
         });
         return filter.length == Object.keys(arr).length;
     }
