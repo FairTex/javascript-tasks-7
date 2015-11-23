@@ -12,15 +12,23 @@ exports.init = function () {
 
     Object.prototype.checkHasKeys = function (keys) {
         var thisArr = this;
-        var filter = keys.filter(function (key) {
-            return (key in thisArr);
-        });
-        return filter.length == Object.keys(thisArr).length;
+
+        if (Object.keys(thisArr).length != keys.length) {
+            return false;
+        }
+        return thisArr.checkContainsKeys(keys);
     };
 
     Object.prototype.checkContainsValues = function (values) {
+        var thisArr = this;
+
+        var arr = [];
+        for (var val in thisArr) {
+            arr.push(thisArr[val]);
+        }
+
         for (var value of values) {
-            if (this.indexOf(value) < 0) {
+            if (arr.indexOf(value) < 0) {
                 return false;
             }
         }
@@ -28,11 +36,25 @@ exports.init = function () {
     };
 
     Object.prototype.checkHasValues = function (values) {
-        var arr = this;
-        var filter = values.filter(function (value) {
-            return (arr.indexOf(value) > 0);
-        });
-        return filter.length == Object.keys(arr).length;
+        var arr = [];
+        var keys = Object.keys(this);
+
+        for (var key of keys) {
+            arr.push(this[key]);
+        }
+        console.log(arr, values);
+
+        for (var e of arr) {
+            if (values.indexOf(e) < 0) {
+                return false;
+            }
+        }
+        for (var i of values) {
+            if (arr.indexOf(i) < 0) {
+                return false;
+            }
+        }
+        return true;
     };
 
     Object.prototype.checkHasValueType = function (key, type) {
