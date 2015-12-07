@@ -4,8 +4,7 @@ exports.init = function () {
     Object.prototype.checkContainsKeys = function (keys) {
         if (Object.getPrototypeOf(this) == Array.prototype ||
             Object.getPrototypeOf(this) == Object.prototype) {
-            for (var key of keys)
-            {
+            for (var key of keys) {
                 if (!(key in this)) {
                     return false;
                 }
@@ -36,8 +35,7 @@ exports.init = function () {
                 arr.push(thisArr[val]);
             }
 
-            for (var value of values)
-            {
+            for (var value of values) {
                 if (arr.indexOf(value) < 0) {
                     return false;
                 }
